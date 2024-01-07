@@ -56,7 +56,7 @@ public class Bank
                 return customer;
             }
         }
-        System.out.println("model.Customer didnt found");
+        System.out.println("Customer didnt found");
         return null;
     }
     public String PrintCustomer(Customer customer){
@@ -73,6 +73,8 @@ public class Bank
         }
         transactions.add(transaction);
         transactions.sort(Comparator.naturalOrder());
+        ChangeBalance(transaction.GetSender(), transaction.GetReciever(), transaction.GetSum());
+        System.out.println("Transaction " + transaction.GetId() + " completed");
         return true;
     }
 
@@ -83,15 +85,6 @@ public class Bank
         receiver.setBalance(receiver.getBalance() + sum);
         customers.set(customers.indexOf(GetCustomerById(senderId)), sender);
         customers.set(customers.indexOf(GetCustomerById(receiverId)), receiver);
-    }
-    public void RunTransactions()
-    {
-        for(Transaction transaction : transactions)
-        {
-            ChangeBalance(transaction.GetSender(), transaction.GetReciever(), transaction.GetSum());
-            System.out.println("Transaction " + transaction.GetId() + " completed");
-        }
-        System.out.println("Transactions completed");
     }
 
     public void GetTransactions()

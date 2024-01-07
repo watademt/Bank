@@ -16,7 +16,6 @@ public class Main {
             System.out.println("Create-transaction");
             System.out.println("Show-customers");
             System.out.println("Show-transactions");
-            System.out.println("Run-transactions");
             System.out.println("Get-customer-by-id");
 
             input = in.nextLine();
@@ -29,13 +28,13 @@ public class Main {
                     double balance = Double.parseDouble(in.nextLine());
                     Customer customer = new Customer(name, balance);
                     bank.AddCustomer(customer);
-                    System.out.println("model.Customer " + name + " created with id " + customer.getId());
+                    System.out.println("Customer " + name + " created with id " + customer.getId());
                     break;
                 case ("Del-customer"):
                     System.out.print("Enter customers id: ");
                     String id = in.nextLine();
                     bank.DeleteCustomer(id);
-                    System.out.println("model.Customer deleted");
+                    System.out.println("Customer deleted");
                     break;
                 case ("Create-transaction"):
                     System.out.print("Enter senders id: ");
@@ -49,10 +48,10 @@ public class Main {
                     try {
                         if(bank.AddTransaction(new Transaction(senderId, recieverId, sum, delay)))
                         {
-                            System.out.println("model.Transaction added");
+                            System.out.println("Transaction added");
                         }else
                         {
-                            System.out.println("model.Transaction didnt added");
+                            System.out.println("Transaction didnt added");
                         }
                     } catch (Exception e) {
                         throw new RuntimeException(e);
@@ -64,9 +63,6 @@ public class Main {
                 case ("Show-transactions"):
                     bank.GetTransactions();
                     break;
-                case ("Run-transactions"):
-                    bank.RunTransactions();
-                    break;
                 case ("Get-customer-by-id"):
                     System.out.print("Enter customers id: ");
                     String ID = in.nextLine();
@@ -75,7 +71,6 @@ public class Main {
                     System.out.println("Unknown command");
                     break;
             }
-
             if(input == "exit")
             {
                 break;
